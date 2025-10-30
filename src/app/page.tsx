@@ -3,6 +3,10 @@
 import { useEffect, useState, useRef } from "react";
 import { socket } from "../socket";
 import { MessageDTO } from "./@types/MessageDTO";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Field, FieldDescription, FieldGroup, FieldLabel, FieldLegend, FieldSet } from "@/components/ui/field";
+import { FormJoin } from "./components/FormJoin";
 
 export default function Home() {
   const [isConnected, setIsConnected] = useState<boolean>(false);
@@ -95,6 +99,10 @@ export default function Home() {
     }
   };
 
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
+  }
+
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
     if (inputMessage.trim()) {
@@ -126,28 +134,12 @@ export default function Home() {
 
   if (!hasJoined) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <div className="bg-white p-8 rounded-lg shadow-md w-96">
-          <h1 className="text-2xl font-bold mb-4 text-center">Join Chat</h1>
-          <form onSubmit={handleJoin}>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your username"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              maxLength={20}
-            />
-            <button
-              type="submit"
-              disabled={!username.trim() || !isConnected}
-              className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
-            >
-              {isConnected ? "Join" : "Connecting..."}
-            </button>
-          </form>
-        </div>
-      </div>
+      <FormJoin
+        isConnected={isConnected}
+        username={username}
+        handleChange={handleUsernameChange}
+        handleJoin={handleJoin}
+      />
     );
   }
 
