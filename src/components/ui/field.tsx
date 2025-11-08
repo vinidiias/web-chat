@@ -1,9 +1,13 @@
 "use client"
 
+//EXTERNAL LIBRARIES
 import { useMemo } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
+//UTILS
 import { cn } from "@/lib/utils"
+
+//UI COMPONENTS
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 

@@ -1,3 +1,4 @@
+//EXTERNAL LIBRARIES
 import { io } from "socket.io-client";
 
 // Connect to the socket server

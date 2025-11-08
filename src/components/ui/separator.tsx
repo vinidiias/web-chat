@@ -1,8 +1,10 @@
 "use client"
 
+//EXTERNAL LIBRARIES
 import * as React from "react"
 import * as SeparatorPrimitive from "@radix-ui/react-separator"
 
+//UTILS
 import { cn } from "@/lib/utils"
 
 function Separator({
